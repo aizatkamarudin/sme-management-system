@@ -1,0 +1,15 @@
+create model -> create table -> join table -> list out value -> update value -> delete value
+
+
+Brand_table
+    - id
+    - brand_name
+    - type
+    - model
+
+inventory_table
+    - id
+    - brand_id
+    - quantity
+    - condition
+    - category
