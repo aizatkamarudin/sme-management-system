@@ -29,7 +29,7 @@
 </div>
 {{-- Container --}}
 <div class="row gy-5 g-xl-10">
-									
+	
 									<!--end::Col-->
 									<!--begin::Col-->
 									<div class="col-xl-12 mb-5 mb-xl-10 px-12">
@@ -39,6 +39,7 @@
 											<div class="card-header pt-7">
 												<!--begin::Title-->
 												<h3 class="card-title align-items-start flex-column">
+												
 													<span class="card-label fw-bolder text-dark">Inventory Items</span>
 													<span class="text-gray-400 mt-1 fw-bold fs-6">Avg. 57 orders per day</span>
 												</h3>
@@ -151,15 +152,17 @@
 															<td></td>
 														</tr>
 														
+														@foreach ($inventories as $inventory)
+														{{-- {{$inventory->getBrand->name }} --}}
 														<tr>
 															<td>
-																<a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="text-dark text-hover-primary">Rujie</a>
+																<a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="text-dark text-hover-primary">{{$inventory->getBrand->name }}</a>
 															</td>
-															<td class="text-end">Switch</td>
+															<td class="text-end">{{$inventory->getBrand->type }}</td>
 															<td class="text-end">
-																<a href="" class="text-dark text-hover-primary">RG-NBS3100-8GT2SFP-P</a>
+																<a href="" class="text-dark text-hover-primary">{{$inventory->getBrand->model }}</a>
 															</td>
-															<td class="text-end">4</td>
+															<td class="text-end">{{$inventory->quantity }}</td>
 															<td class="text-end">
 																<span class="badge py-3 px-4 fs-7 badge-light-success">Standby</span>
 															</td>
@@ -187,78 +190,8 @@
 																</button>
 															</td>
 														</tr>
-														<tr>
-															<td>
-																<a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="text-dark text-hover-primary">Rujie</a>
-															</td>
-															<td class="text-end">Switch</td>
-															<td class="text-end">
-																<a href="" class="text-dark text-hover-primary">RG-NBS3100-8GT2SFP-P</a>
-															</td>
-															<td class="text-end">4</td>
-															<td class="text-end">
-																<span class="badge py-3 px-4 fs-7 badge-light-success">Standby</span>
-															</td>
-															<td class="text-end">
-																<span class="text-dark fw-bolder">New</span>
-															</td>
-															
-															<td class="text-end">
-																<button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px" data-kt-table-widget-4="expand_row">
-																	<!--begin::Svg Icon | path: icons/duotune/arrows/arr087.svg-->
-																	<span class="svg-icon svg-icon-3 m-0 toggle-off">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																			<rect opacity="0.5" x="11" y="18" width="12" height="2" rx="1" transform="rotate(-90 11 18)" fill="black" />
-																			<rect x="6" y="11" width="12" height="2" rx="1" fill="black" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																	<!--begin::Svg Icon | path: icons/duotune/arrows/arr089.svg-->
-																	<span class="svg-icon svg-icon-3 m-0 toggle-on">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																			<rect x="6" y="11" width="12" height="2" rx="1" fill="black" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</button>
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="text-dark text-hover-primary">Rujie</a>
-															</td>
-															<td class="text-end">Switch</td>
-															<td class="text-end">
-																<a href="" class="text-dark text-hover-primary">RG-NBS3100-8GT2SFP-P</a>
-															</td>
-															<td class="text-end">4</td>
-															<td class="text-end">
-																<span class="badge py-3 px-4 fs-7 badge-light-success">Standby</span>
-															</td>
-															<td class="text-end">
-																<span class="text-dark fw-bolder">New</span>
-															</td>
-															
-															<td class="text-end">
-																<button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px" data-kt-table-widget-4="expand_row">
-																	<!--begin::Svg Icon | path: icons/duotune/arrows/arr087.svg-->
-																	<span class="svg-icon svg-icon-3 m-0 toggle-off">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																			<rect opacity="0.5" x="11" y="18" width="12" height="2" rx="1" transform="rotate(-90 11 18)" fill="black" />
-																			<rect x="6" y="11" width="12" height="2" rx="1" fill="black" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																	<!--begin::Svg Icon | path: icons/duotune/arrows/arr089.svg-->
-																	<span class="svg-icon svg-icon-3 m-0 toggle-on">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																			<rect x="6" y="11" width="12" height="2" rx="1" fill="black" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</button>
-															</td>
-														</tr>
+														@endforeach
+														
 													</tbody>
 													<!--end::Table body-->
 												</table>

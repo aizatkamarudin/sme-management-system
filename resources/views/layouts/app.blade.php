@@ -124,9 +124,10 @@ License: For each use you must have a valid license purchased only from above li
 										<span class="menu-title">Inventory</span>
 										<span class="menu-arrow"></span>
 									</span>
+									
 									<div class="menu-sub menu-sub-accordion menu-active-bg">
                                     <div class="menu-item">
-											<a class="menu-link @if (request()->segment(1)=='inventory' && request()->segment(2)=='list') active @endif" href="{{ route('inventory.list') }}">
+											<a class="menu-link @if (request()->segment(1)=='inventory' && request()->segment(2)=='list') active @endif" href="{{ route('inventory.index') }}">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>

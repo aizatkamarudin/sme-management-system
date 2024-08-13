@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class InventoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $inventories = inventory::all();
-        // dd($inventories);
-        return view('inventory.index', compact('inventories'));
+        //
     }
 
     /**
@@ -36,7 +34,7 @@ class InventoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(inventory $inventory)
+    public function show(Category $category)
     {
         //
     }
@@ -44,7 +42,7 @@ class InventoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(inventory $inventory)
+    public function edit(Category $category)
     {
         //
     }
@@ -52,7 +50,7 @@ class InventoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, inventory $inventory)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -60,7 +58,7 @@ class InventoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(inventory $inventory)
+    public function destroy(Category $category)
     {
         //
     }
