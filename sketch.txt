@@ -13,3 +13,10 @@ inventory_table
     - quantity
     - condition
     - category
+
+
+
+On going 
+- add log table(list of log so can track recent move)
+- create process
+- report is number like dashboard

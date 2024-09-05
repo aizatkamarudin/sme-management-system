@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('type_devices', function (Blueprint $table) {
             $table->id();
-            $table->integer('brand_id');
-            $table->string('serial_number');
-            $table->integer('condition');
-            $table->integer('category');
+            $table->string('type_devices');
             $table->integer('is_deleted');
             $table->timestamp('created_at')->nullable();
         });
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('type_devices');
     }
 };

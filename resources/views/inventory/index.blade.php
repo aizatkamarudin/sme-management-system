@@ -20,7 +20,7 @@
 			<!--begin::Secondary button-->
 			<!--end::Secondary button-->
 			<!--begin::Primary button-->
-			<a href="../../demo1/dist/.html" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Create</a>
+			<a href="{{ route('inventory.create') }}" class="btn btn-sm btn-primary" data-bs-target="#kt_modal_create_app">Create</a>
 			<!--end::Primary button-->
 		</div>
 		<!--end::Actions-->
@@ -111,7 +111,7 @@
 															<th class="min-w-100px">Brand</th>
 															<th class="text-end min-w-100px">Type</th>
 															<th class="text-end min-w-125px">Model</th>
-															<th class="text-end min-w-125px">Unit</th>
+															<th class="text-end min-w-125px">Serial Number</th>
 															<th class="text-end min-w-100px">Category</th>
 															<th class="text-end min-w-100px">Condition</th>
 															<th class="text-end"></th>
@@ -158,11 +158,11 @@
 															<td>
 																<a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="text-dark text-hover-primary">{{$inventory->getBrand->name }}</a>
 															</td>
-															<td class="text-end">{{$inventory->getBrand->type }}</td>
+															<td class="text-end">{{$inventory->getBrand->getType->type_devices }}</td>
 															<td class="text-end">
 																<a href="" class="text-dark text-hover-primary">{{$inventory->getBrand->model }}</a>
 															</td>
-															<td class="text-end">{{$inventory->quantity }}</td>
+															<td class="text-end">{{$inventory->serial_number }}</td>
 															<td class="text-end">
 																<span class="badge py-3 px-4 fs-7 badge-light-success">Standby</span>
 															</td>

@@ -13,7 +13,7 @@ class inventory extends Model
 
     protected $fillable = [
         'brand_id',
-        'quantity',
+        'serial_number',
         'condition',
         'category',
         'is_deleted',
