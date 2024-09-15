@@ -73,7 +73,6 @@
 														<div class="col-lg-8 fv-row">
 															<!--begin::Input-->
 															<select name="brand"  data-control="select2" data-placeholder="Select a brand..." class="form-select form-select-solid form-select-lg">
-																<option value="">Select a Brand...</option>
 																@foreach ($brands as $brand)
 																<option value="{{ $brand->id }}">{{$brand->name}}</option>
 																@endforeach
@@ -106,7 +105,7 @@
 														<!--end::Label-->
 														<!--begin::Col-->
 														<div class="col-lg-8 fv-row">
-															<input type="text" name="model_number" class="form-control form-control-lg form-control-solid" placeholder="Model Number" value="" />
+															<input type="text" name="model_number" disabled="disabled" class="form-control form-control-lg form-control-solid" placeholder="Model Number" value="{{ $inventory->getBrand->model }}" />
 														</div>
 														<!--end::Col-->
 													</div>
@@ -116,7 +115,7 @@
 														<!--end::Label-->
 														<!--begin::Col-->
 														<div class="col-lg-8 fv-row">
-															<input type="text" name="serial_number" class="form-control form-control-lg form-control-solid" placeholder="Serial Number" value="" />
+															<input type="text" name="serial_number" class="form-control form-control-lg form-control-solid" placeholder="Serial Number" value="{{ $inventory->serial_number }}" />
 														</div>
 														<!--end::Col-->
 													</div>

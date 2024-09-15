@@ -8,6 +8,7 @@ use App\Models\TypeDevice;
 use App\Models\Condition;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InventoryController extends Controller
 {
@@ -38,23 +39,62 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'brand' => 'required',
+            'device' => 'required',
+            'model_number' => 'required',
+            'serial_number' => 'required',
+            'category' => 'required',
+            'condition' => 'required',
+        ]);
+        DB::beginTransaction();
+        try {
+            if(!inventory::where('serial_number', $request->serial_number)->exists()){
+                $inventory = new inventory();
+                $inventory->brand_id = $request['brand'];
+                $inventory->serial_number = $request['serial_number'];
+                $inventory->condition = $request['condition'];
+                $inventory->category = $request['category'];
+                $inventory->is_deleted = 0;
+                $inventory->save();   
+
+                DB::commit();
+
+                return redirect()->route('inventory.index')->with('success', 'New Inventory Added successfully.');
+
+            }else {
+                return back()->withErrors('Please Try Again');
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::channel('inventory')->error('inventory store - ' . $e->getMessage());
+            return back()->withErrors('Please Try Again');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(inventory $inventory)
+    public function show($id)
     {
-        //
+        $inventory = inventory::find($id);
+        // $inventories = inventory::all();
+        // dd($inventories);
+        // dd($inventory);
+        return view('inventory.show', compact('inventory'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(inventory $inventory)
+    public function edit($id)
     {
-        //
+        $inventory = inventory::find($id);
+        $brands = brand::all();
+        $typeDevices = TypeDevice::all();
+        $conditions = Condition::all();
+        $categories = Category::all();
+        return view('inventory.edit', compact('inventory','brands','typeDevices','conditions', 'categories'));
     }
 
     /**
