@@ -1,0 +1,134 @@
+1. Users Table
+users
+user_id (Primary Key, INT, Auto Increment)
+username (VARCHAR, Unique)
+password_hash (VARCHAR)
+email (VARCHAR, Unique)
+role (ENUM: 'admin', 'employee', 'manager', etc.)
+created_at (DATETIME)
+updated_at (DATETIME)
+2. Employees Table
+employees
+employee_id (Primary Key, INT, Auto Increment)
+user_id (Foreign Key, INT, References users.user_id)
+first_name (VARCHAR)
+last_name (VARCHAR)
+gender (ENUM: 'male', 'female', 'other')
+date_of_birth (DATE)
+address (VARCHAR)
+phone_number (VARCHAR)
+email (VARCHAR, Unique)
+date_of_joining (DATE)
+position (VARCHAR)
+department_id (Foreign Key, INT, References departments.department_id)
+manager_id (Foreign Key, INT, Self-reference to employee_id)
+status (ENUM: 'active', 'inactive', 'terminated')
+created_at (DATETIME)
+updated_at (DATETIME)
+3. Departments Table
+departments
+department_id (Primary Key, INT, Auto Increment)
+department_name (VARCHAR, Unique)
+manager_id (Foreign Key, INT, References employees.employee_id)
+created_at (DATETIME)
+updated_at (DATETIME)
+4. Employee Documents Table
+employee_documents
+document_id (Primary Key, INT, Auto Increment)
+employee_id (Foreign Key, INT, References employees.employee_id)
+document_type (VARCHAR)
+document_path (VARCHAR)
+uploaded_at (DATETIME)
+5. Leave Management Table
+leave_requests
+leave_id (Primary Key, INT, Auto Increment)
+employee_id (Foreign Key, INT, References employees.employee_id)
+leave_type (ENUM: 'sick', 'casual', 'maternity', etc.)
+start_date (DATE)
+end_date (DATE)
+reason (TEXT)
+status (ENUM: 'pending', 'approved', 'rejected')
+requested_at (DATETIME)
+approved_by (Foreign Key, INT, References employees.employee_id)
+6. Attendance Table
+attendance
+attendance_id (Primary Key, INT, Auto Increment)
+employee_id (Foreign Key, INT, References employees.employee_id)
+date (DATE)
+check_in (TIME)
+check_out (TIME)
+status (ENUM: 'present', 'absent', 'leave', 'holiday')
+created_at (DATETIME)
+7. Payroll Table
+payroll
+payroll_id (Primary Key, INT, Auto Increment)
+employee_id (Foreign Key, INT, References employees.employee_id)
+salary_date (DATE)
+basic_salary (DECIMAL)
+allowances (DECIMAL)
+deductions (DECIMAL)
+net_salary (DECIMAL)
+tax (DECIMAL)
+status (ENUM: 'paid', 'unpaid')
+created_at (DATETIME)
+8. Recruitment Tables
+job_postings
+job_id (Primary Key, INT, Auto Increment)
+title (VARCHAR)
+department_id (Foreign Key, INT, References departments.department_id)
+description (TEXT)
+requirements (TEXT)
+status (ENUM: 'open', 'closed')
+created_at (DATETIME)
+applicants
+applicant_id (Primary Key, INT, Auto Increment)
+job_id (Foreign Key, INT, References job_postings.job_id)
+first_name (VARCHAR)
+last_name (VARCHAR)
+email (VARCHAR)
+resume_path (VARCHAR)
+status (ENUM: 'applied', 'interviewed', 'hired', 'rejected')
+applied_at (DATETIME)
+9. Performance Management Tables
+performance_reviews
+review_id (Primary Key, INT, Auto Increment)
+employee_id (Foreign Key, INT, References employees.employee_id)
+review_period (VARCHAR)
+score (DECIMAL)
+comments (TEXT)
+reviewed_by (Foreign Key, INT, References employees.employee_id)
+created_at (DATETIME)
+10. Training and Development Tables
+training_courses
+course_id (Primary Key, INT, Auto Increment)
+course_name (VARCHAR)
+description (TEXT)
+created_at (DATETIME)
+employee_training
+training_id (Primary Key, INT, Auto Increment)
+employee_id (Foreign Key, INT, References employees.employee_id)
+course_id (Foreign Key, INT, References training_courses.course_id)
+completion_date (DATE)
+11. Notifications Table
+notifications
+notification_id (Primary Key, INT, Auto Increment)
+user_id (Foreign Key, INT, References users.user_id)
+message (TEXT)
+status (ENUM: 'unread', 'read')
+created_at (DATETIME)
+12. System Settings Table
+system_settings
+setting_id (Primary Key, INT, Auto Increment)
+setting_key (VARCHAR, Unique)
+setting_value (TEXT)
+created_at (DATETIME)
+updated_at (DATETIME)
+Indexes and Relationships
+Ensure foreign keys are properly indexed for better query performance.
+Many-to-many relationships (like training courses) are handled via associative tables (e.g., employee_training).
+Self-referencing keys for hierarchical data (e.g., manager_id in employees).
+Additional Considerations
+Implement data encryption for sensitive information such as passwords and personal details.
+Use appropriate data types (e.g., DECIMAL for salary fields, ENUM for predefined options).
+Include audit trails (e.g., created_at, updated_at timestamps) for tracking changes.
+Ensure compliance with data privacy laws (e.g., GDPR) regarding employee information.
