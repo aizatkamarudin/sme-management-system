@@ -100,9 +100,28 @@ class InventoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, inventory $inventory)
+    public function update(Request $request, $id)
     {
-        //
+        dd($request);
+        // $inventory = inventory::find($id);
+        // $inventory->brand_id = $request->get('')
+        //         $staff->full_name = $request->get('full_name');
+        //         $staff->category = $request->get('category');
+        //         $staff->position = $request->get('position');
+        //         $staff->staff_no = $request->get('staff_no');
+        //         $staff->gender = $request->get('gender');
+        //         $staff->contact_no = $request->get('contact_no');
+        //         $staff->profile_pic = $profile_pic;
+        //         $staff->dept_id = $request->get('department')['0'];
+        //         $staff->boss_to_company = $request->get('boss_to_company');
+        //         $staff->reporting_to = $request->get('reporting_to');
+        //         $staff->service_date = Carbon::parse($request->service_date)->format('Y-m-d');
+        //         $staff->manager_multiple_department = 0;
+        //         $staff->user->name = $request->get('username');
+        //         $staff->user->email = $request->get('email');
+        //         $staff->user->status = $request->get('status');
+        //         $staff->save();
+        //         $staff->user->save();
     }
 
     /**
