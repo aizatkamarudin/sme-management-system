@@ -60,10 +60,10 @@
                     </div>
                     <!--begin::Card header-->
                     <!--begin::Content-->
-                    <form action="{{ route('inventory.update', $inventory->id) }}" method="PUT"
+                    <form action="{{ route('inventory.update', $inventory->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH')
+                        @method('POST')
                         <div id="kt_account_settings_profile_details" class="collapse show">
                             <!--begin::Form-->
                             <!--begin::Card body-->
@@ -110,13 +110,20 @@
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
                                     <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Model Number</label>
+                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Model</label>
                                     <!--end::Label-->
                                     <!--begin::Col-->
                                     <div class="col-lg-8 fv-row">
-                                        <input type="text" name="model_number"
-                                            class="form-control form-control-lg form-control-solid"
-                                            placeholder="Model Number" value="{{ $inventory->getBrand->model }}" />
+                                        <!--begin::Input-->
+                                        <select name="device" data-control="select2"
+                                            data-placeholder="Select a Type of Device..."
+                                            class="form-select form-select-solid form-select-lg">
+                                            <option value="">Select a Device...</option>
+                                            @foreach ($models as $model)
+                                                <option value="{{ $model->id }}">{{ $model->model }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <!--end::Col-->
                                 </div>

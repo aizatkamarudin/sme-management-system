@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::resource('inventory', InventoryController::class);
+Route::post('/inventory/update/{id}', [InventoryController::class, 'update'])->name('inventory.update');

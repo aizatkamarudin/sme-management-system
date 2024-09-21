@@ -7,6 +7,7 @@ use App\Models\brand;
 use App\Models\TypeDevice;
 use App\Models\Condition;
 use App\Models\Category;
+use App\Models\Models;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -94,7 +95,8 @@ class InventoryController extends Controller
         $typeDevices = TypeDevice::all();
         $conditions = Condition::all();
         $categories = Category::all();
-        return view('inventory.edit', compact('inventory','brands','typeDevices','conditions', 'categories'));
+        $models = Models::all();
+        return view('inventory.edit', compact('inventory','brands','typeDevices','conditions', 'categories', 'models'));
     }
 
     /**
@@ -103,8 +105,11 @@ class InventoryController extends Controller
     public function update(Request $request, $id)
     {
         dd($request);
-        // $inventory = inventory::find($id);
-        // $inventory->brand_id = $request->get('')
+        $inventory = inventory::find($id);
+        $inventory->brand_id = $request->get('brand');
+        $inventory->serial_number = $request->get('serial_number');
+        $inventory->category = $request->get('category');
+        $inventory->condition = $request->get('condition');
         //         $staff->full_name = $request->get('full_name');
         //         $staff->category = $request->get('category');
         //         $staff->position = $request->get('position');

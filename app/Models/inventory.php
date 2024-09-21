@@ -35,4 +35,9 @@ class inventory extends Model
     {
         return $this->belongsTo(Condition::class, 'condition', 'id');
     }
+
+    public function getModels()
+    {
+        return $this->belongsTo(Models::class, 'model', 'id');
+    }
 }
