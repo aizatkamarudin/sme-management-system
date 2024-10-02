@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TypeDevice extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $fillable = [
         'type_devices',
         'is_deleted',

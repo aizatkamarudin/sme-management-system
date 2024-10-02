@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TypeDevice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TypeDeviceController extends Controller
 {
@@ -12,7 +13,9 @@ class TypeDeviceController extends Controller
      */
     public function index()
     {
-        //
+        $typeDevices = TypeDevice::all();
+        // dd($inventories);
+        return view('typeDevices.index', compact('typeDevices'));
     }
 
     /**
@@ -20,7 +23,7 @@ class TypeDeviceController extends Controller
      */
     public function create()
     {
-        //
+        return view('typeDevices.create');
     }
 
     /**
@@ -28,7 +31,29 @@ class TypeDeviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'type_device' => 'required',
+        ]);
+        DB::beginTransaction();
+        try {
+            if(!TypeDevice::where('type_devices', $request->type_devices)->exists()){
+                $typeDevice = new TypeDevice();
+                $typeDevice->type_devices = $request['type_device'];
+                $typeDevice->is_deleted = 0;
+                $typeDevice->save();   
+
+                DB::commit();
+
+                return redirect()->route('typeDevice.index')->with('success', 'New Type of Device Added successfully.');
+
+            }else {
+                return back()->withErrors('This Type of Device Already Exist');
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::channel('inventory')->error('inventory store - ' . $e->getMessage());
+            return back()->withErrors('Please Try Again');
+        }
     }
 
     /**
